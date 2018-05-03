@@ -144,4 +144,26 @@ router.get('/insertStatistics', (req, res) => { // ID, role y Winrates de todos 
         });
 });
 
+router.get('/recover/all', (req, res, next)=>{
+    models.stat
+    .findAll()
+    .then(stat=>{
+        if (stat){
+            res.json({
+                status: 1,
+                data stat
+            });
+        } else {
+            res.status(400).json({
+                status:0
+            });
+        }
+    })
+    .catch(error=>{
+        res.status(400).json({
+            status:0
+        });
+    });
+});
+
 module.exports = router;
