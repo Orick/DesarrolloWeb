@@ -18,8 +18,8 @@ router.get('/insertStatistics', (req, res) => { // ID, role y Winrates de todos 
             let statistics = response.data;
             let keys = Object.keys(statistics);
 
-            for(let i=0;i<statistics.length;i++){
-                let key = statistics[i];
+            for(let i=0;i<keys.length;i++){
+                let key = keys[i];
                 // Estadisticas Basicos del Campeon
 
                 let id = statistics[key].championId; // ID de Campeon
