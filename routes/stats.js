@@ -151,7 +151,7 @@ router.get('/recover/all', (req, res, next)=>{
         if (stat){
             res.json({
                 status: 1,
-                data stat
+                data: stat
             });
         } else {
             res.status(400).json({
