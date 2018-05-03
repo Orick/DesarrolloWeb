@@ -5,8 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     const stat = sequelize.define('stat', {
         id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true
+            allowNull: false
         },
         role: {
             type: DataTypes.STRING,
