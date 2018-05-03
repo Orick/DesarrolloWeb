@@ -3,7 +3,7 @@ const models = require('../models');
 
 module.exports = (sequelize, DataTypes) => {
     const stat = sequelize.define('stat', {
-        id: {
+        champid: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
