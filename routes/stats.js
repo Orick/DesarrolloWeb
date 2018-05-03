@@ -22,7 +22,7 @@ router.get('/insertStatistics', (req, res) => { // ID, role y Winrates de todos 
                 let key = keys[i];
                 // Estadisticas Basicos del Campeon
 
-                let id = statistics[key].championId; // ID de Campeon
+                let champId = statistics[key].championId; // ID de Campeon
                 let role = statistics[key].role; // Rol Correspondiente
                 let winRate = statistics[key].winRate; // Su razon de victorias con el Rol que esta jugando
 
@@ -69,7 +69,7 @@ router.get('/insertStatistics', (req, res) => { // ID, role y Winrates de todos 
                 // Al registrar estos 3 stats, se guardan todos los datos obtenidos
                 if (id && winRate && role) { 
                     models.stat.create({
-                        id: id,
+                        champId: champId,
                         role: role,
                         winRate: winRate,
 
