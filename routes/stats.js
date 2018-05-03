@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/insertStatistics', (req, res) => { // ID, role y Winrates de todos los campeones
-    let url = 'http://api.champion.gg/v2/champions?champData=winRate&sort=winRate-desc&limit=250&api_key=' + apiKey;
+    let url = 'http://api.champion.gg/v2/champions?champData=winRate,hashes,goldEarned,kills,deaths,assists&sort=winRate-desc&limit=250&api_key=' + apiKey;
 
     axios.get(url)
         .then(function (response) {
@@ -39,36 +39,36 @@ router.get('/insertStatistics', (req, res) => { // ID, role y Winrates de todos 
 
                 let firstItemCount = statistics[key].hashes.firstitemshash.highestCount.count; // cantidad de veces repetido
                 let firstItemWins = statistics[key].hashes.firstitemshash.highestCount.wins; // numero de victorias
-                let firstItemWinRate = statistics[key].hashes.firstitemshash.highestCount.winRate; // razon de victorias
+                let firstItemWinRate = statistics[key].hashes.firstitemshash.highestCount.winrate; // razon de victorias
                 let firstItemHash = statistics[key].hashes.firstitemshash.highestCount.hash; // IDs de los objetos
                 // Items Finales - Mas Popular
 
                 let finalItemCount = statistics[key].hashes.finalitemshashfixed.highestCount.count; // cantidad de veces repetido
                 let finalItemWins = statistics[key].hashes.finalitemshashfixed.highestCount.wins; // numero de victorias
-                let finalItemWinRate = statistics[key].hashes.finalitemshashfixed.highestCount.winRate; // razon de victorias
+                let finalItemWinRate = statistics[key].hashes.finalitemshashfixed.highestCount.winrate; // razon de victorias
                 let finalItemHash = statistics[key].hashes.finalitemshashfixed.highestCount.hash; // IDs de los objetos
                 // Orden de Habilidades - Mas Popular
 
                 let skillCount = statistics[key].hashes.skillorderhash.highestCount.count; // cantidad de veces repetido
                 let skillWins = statistics[key].hashes.skillorderhash.highestCount.wins; // numero de victorias
-                let skillWinRate = statistics[key].hashes.skillorderhash.highestCount.winRate; // razon de victorias
+                let skillWinRate = statistics[key].hashes.skillorderhash.highestCount.winrate; // razon de victorias
                 let skillHash = statistics[key].hashes.skillorderhash.highestCount.hash; // IDs de los objetos
                 // Habilidades de Summoner - Mas Popular
 
                 let summonerCount = statistics[key].hashes.summonershash.highestCount.count; // cantidad de veces repetido
                 let summonerWins = statistics[key].hashes.summonershash.highestCount.wins; // numero de victorias
-                let summonerWinRate = statistics[key].hashes.summonershash.highestCount.winRate; // razon de victorias
+                let summonerWinRate = statistics[key].hashes.summonershash.highestCount.winrate; // razon de victorias
                 let summonerHash = statistics[key].hashes.summonershash.highestCount.hash; // IDs de los objetos
                 // Runas Ocupadas - Mas Popular
 
                 let runeCount = statistics[key].hashes.runehash.highestCount.count; // cantidad de veces repetido
                 let runeWins = statistics[key].hashes.runehash.highestCount.wins; // numero de victorias
-                let runeWinRate = statistics[key].hashes.runehash.highestCount.winRate; // razon de victorias
+                let runeWinRate = statistics[key].hashes.runehash.highestCount.winrate; // razon de victorias
                 let runeHash = statistics[key].hashes.runehash.highestCount.hash; // IDs de los objetos
 
                 // Al registrar estos 3 stats, se guardan todos los datos obtenidos
                 if (id && winRate && role) { 
-                    models.stats.create({
+                    models.stat.create({
                         id: id,
                         role: role,
                         winRate: winRate,
@@ -107,17 +107,17 @@ router.get('/insertStatistics', (req, res) => { // ID, role y Winrates de todos 
                         runeWinRate: runeWinRate,
                         runeHash: runeHash
                     })
-                    .then(stats => {
-                        if (stats) {
+                    .then(stat => {
+                        if (stat) {
                             res.json({
                                 status: 1,
-                                statusCode: 'stats/created',
-                                data: stats.toJSON()
+                                statusCode: 'stat/created',
+                                data: stat.toJSON()
                             });
                         } else {
                             res.status(400).json({
                                 status: 0,
-                                statusCode: 'stats/error',
+                                statusCode: 'stat/error',
                                 description: "Couldn't create the statistics"
                             });
                         }
@@ -132,7 +132,7 @@ router.get('/insertStatistics', (req, res) => { // ID, role y Winrates de todos 
                 } else {
                     res.status(400).json({
                         status: 0,
-                        statusCode: 'stats/wrong-body',
+                        statusCode: 'stat/wrong-body',
                         description: 'The body is wrong! :('
                     });
                 }
@@ -142,28 +142,6 @@ router.get('/insertStatistics', (req, res) => { // ID, role y Winrates de todos 
         .catch(function (error) {
            console.log(error);
         });
-});
-
-router.get('/recover/all', (req, res, next)=>{
-    models.stats
-    .findAll()
-    .then(stats=>{
-        if (stats){
-            res.json({
-                status: 1,
-                data: stats
-            });
-        } else {
-            res.status(400).json({
-                status:0
-            });
-        }
-    })
-    .catch(error => {
-        res.status(400).json({
-            status:0
-        });
-    });
 });
 
 module.exports = router;
