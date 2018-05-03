@@ -205,7 +205,7 @@ router.get('/find/:server/:accountId', (req, res, next) => {
     });
 });
 
-router.get('/matchLast20/:gameId/:server/:accountId/:summonerId', (req, res, next) => {
+router.get('/matchEs/:gameId/:server/:accountId/:summonerId', (req, res, next) => {
     models.matchlist
         .findOne({
             where:{
