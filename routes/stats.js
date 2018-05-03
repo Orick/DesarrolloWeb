@@ -67,7 +67,7 @@ router.get('/insertStatistics', (req, res) => { // ID, role y Winrates de todos 
                 let runeHash = statistics[key].hashes.runehash.highestCount.hash; // IDs de los objetos
 
                 // Al registrar estos 3 stats, se guardan todos los datos obtenidos
-                if (id && winRate && role) { 
+                if (champId && winRate && role) { 
                     models.stat.create({
                         champId: champId,
                         role: role,
