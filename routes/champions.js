@@ -7,7 +7,7 @@ const router = express.Router();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-var apiKey = 'RGAPI-35761256-01ce-4466-89df-ed0737d60c9b';
+var apiKey = 'RGAPI-cd3ec24d-9d89-4e36-9a98-7090bfe808e9';
 
 /*async function champions_name (lista){
     console.log(lista);

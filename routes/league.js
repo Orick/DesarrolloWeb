@@ -4,12 +4,9 @@ const models = require('../models');
 const axios = require('axios');
 
 
-const apiKey = 'RGAPI-afd57380-a0ac-40a5-8b28-76dabb71a13f';
+const apiKey = 'RGAPI-a5bd1a27-7f42-4250-b0dc-6c60185e712a';
 
 router.get('/find/:server/:summonerId', (req, res, next) => {
-    // const summonerName = req.params.summonerId;
-    // const summonerServer = req.params.server;
-    //
     models.summoner
         .findOne({
             where: {
@@ -119,8 +116,9 @@ router.get('/find/:server/:summonerId', (req, res, next) => {
         .catch( error =>{
             res.json({
                 status: 0,
-                statusCode: 'summoner/error',
-                description: 'Error en base de datos'
+                statusCode: 'league/find/error',
+                description: 'Error en base de datos',
+                error:error.toString()
             });
         });
 });
@@ -163,21 +161,22 @@ router.get( '/update/:server/:summonerId', (req, res, next) => {
                     userUpdate.updateAttributes(dateCreate);
                     res.json({
                         status: 1,
-                        statusCode: 'league/updated',
+                        statusCode: 'league/updated/ok',
                         data: userUpdate.toJSON()
                     });
                 }).catch( error => {
                 res.json({
                     status: 0,
-                    statusCode: 'league/error',
-                    description: 'id erronea'
+                    statusCode: 'league/updated/error',
+                    description: 'id erronea',
+                    error:error
                 });
             });
         } else {
             res.status(400).json({
                 status: 0,
-                statusCode: 'user/error',
-                description: "Usuario no existe"
+                statusCode: 'league/updated/error',
+                description: "Summoner no existe"
             });
         }
     }).catch( errorCreate => {

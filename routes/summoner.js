@@ -15,7 +15,7 @@ const Op = Sequelize.Op;
 //     });
 // });
 
-const apiKey = 'RGAPI-afd57380-a0ac-40a5-8b28-76dabb71a13f';
+const apiKey = 'RGAPI-a5bd1a27-7f42-4250-b0dc-6c60185e712a';
 
 router.get('/find/:server/:summonerName', (req, res, next) => {
     const summonerName = req.params.summonerName;//.charAt(0).toUpperCase() + req.params.summonerName.slice(1);
@@ -53,14 +53,14 @@ router.get('/find/:server/:summonerName', (req, res, next) => {
                     if (userCreate) {
                         res.json({
                             status: 1,
-                            statusCode: 'user/created',
+                            statusCode: 'summoner/find/created',
                             data: userCreate.toJSON()
                         });
                     } else {
                         res.status(400).json({
                             status: 0,
-                            statusCode: 'user/error',
-                            description: "Couldn't create the user"
+                            statusCode: 'summoner/find/error',
+                            description: "No se pudo crear el summoner"
                         });
                     }
                 }).catch( errorCreate => {
@@ -74,8 +74,9 @@ router.get('/find/:server/:summonerName', (req, res, next) => {
             .catch( error => {
                 res.json({
                     status: 0,
-                    statusCode: 'summoner/error',
-                    description: 'Nombre de invocador invalido'
+                    statusCode: 'summoner/find/error',
+                    description: 'Nombre de invocador invalido',
+                    error:error.toString()
                 });
             });
         }
@@ -84,19 +85,20 @@ router.get('/find/:server/:summonerName', (req, res, next) => {
         res.json({
             status: 0,
             statusCode: 'summoner/error',
-            description: 'Error en base de datos'
+            description: 'Error en base de datos',
+            error:error.toString()
         });
     });
 });
 
 
 router.get( '/update/:server/:summonerName', (req, res, next) => {
-    const summonerName = req.params.summonerName.charAt(0).toUpperCase() + req.params.summonerName.slice(1);
+    const summonerName = req.params.summonerName;//.charAt(0).toUpperCase() + req.params.summonerName.slice(1);
     const summonerServer = req.params.server;
 
     models.summoner.findOne({
         where:{
-            name: summonerName,
+            name: { [Op.like]: '%'+summonerName+'%'},
             server: summonerServer
         }
     }).then( userUpdate => {
@@ -112,21 +114,21 @@ router.get( '/update/:server/:summonerName', (req, res, next) => {
                 });
                 res.json({
                     status: 1,
-                    statusCode: 'user/updated',
+                    statusCode: 'summoner/updated/ok',
                     data: userUpdate.toJSON()
                 });
             }).catch( error => {
                 res.json({
                     status: 0,
-                    statusCode: 'summoner/error',
+                    statusCode: 'summoner/update/error',
                     description: 'Nombre de invocador invalido'
                 });
             });
         } else {
             res.status(400).json({
                 status: 0,
-                statusCode: 'user/error',
-                description: "Usuario no existe"
+                statusCode: 'summoner/update/error',
+                description: "Summoner no existe"
             });
         }
     }).catch( errorCreate => {
@@ -145,13 +147,13 @@ router.get('/all', (req, res, next) => {
         if (users) {
             res.json({
                 status: 1,
-                statusCode: 'users/listing',
+                statusCode: 'summoner/listing',
                 data: users
             });
         } else {
             res.status(400).json({
                 status: 0,
-                statusCode: 'users/not-found',
+                statusCode: 'summoner/all/not-found',
                 description: 'There\'s no user information!'
             });
         }

@@ -7,7 +7,7 @@ const router = express.Router();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-var apiKey = 'RGAPI-e296201c-2be3-4202-a81f-84665d2c9486';
+var apiKey = 'RGAPI-cd3ec24d-9d89-4e36-9a98-7090bfe808e9';
 
 router.get('/', async (req, res, next) =>{
 

@@ -174,7 +174,6 @@ router.post('/updateUserPassword', (req, res, next) => {
             firebaseAdmin.auth().updateUser(decodedToken.uid, {
                 password:req.body.password
             }).then( userRecord => {
-                console.log('bbbb',userRecord);
                 res.json({
                     status: 1,
                     statusCode: 'assocciatedAccounts/updateUserPassword',

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-const apiKey = "RGAPI-84559eba-6e8b-424b-b84e-1a4ec3e90fa6";
+const apiKey = "RGAPI-cd3ec24d-9d89-4e36-9a98-7090bfe808e9";
 const models = require('../models');
 
 router.get('/', (req, res) => {
