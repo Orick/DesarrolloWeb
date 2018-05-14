@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-const apiKey = "RGAPI-84559eba-6e8b-424b-b84e-1a4ec3e90fa6";
+const apiKey = "RGAPI-df45ad16-cfab-4b8b-a26f-2ecc59c968a8";
 const models = require('../models');
 
 router.get('/', (req, res) => {
@@ -77,13 +77,15 @@ router.get('/insertitems', (req, res) => {
                         });
                     });
                 } else {
-                    res.status(400).json({
-                        status: 0,
-                        statusCode: 'item/wrong-body',
-                        description: 'The body is wrong! :('
-                    });
+                    console.log('The body of item is wrong! :(');
                 }
             }
+
+            res.status(400).json({
+                status: 1,
+                statusCode: 'Update success',
+                description: "update calls in items were right"
+            });
 
         })
         .catch(function (error) {
@@ -114,7 +116,7 @@ router.get('/assign', (req, res) => {
                             idItem: id,
                             fromItemId: fitem
                         })
-                        .then(formItem => {
+                        .then(fromItem => {
                             if (fromItem) {
                                 res.json({
                                     status: 1,
@@ -130,11 +132,8 @@ router.get('/assign', (req, res) => {
                             }
                         })
                         .catch(error => {
-                            res.status(400).json({
-                                status: 0,
-                                statusCode: 'database/error',
-                                description: error.toString()
-                            });
+                            console.log('statusCode: database/error');
+                            console.log(error.toString());
                         });
                     }                    
                 } else {
@@ -142,6 +141,11 @@ router.get('/assign', (req, res) => {
                 }
             }
 
+            res.status(400).json({
+                status: 1,
+                statusCode: 'Update success',
+                description: "update calls in fromItems were right"
+            });
         })
         .catch(function (error) {
            console.log(error);
