@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-const apiKey = "RGAPI-cd3ec24d-9d89-4e36-9a98-7090bfe808e9";
+const apiKey = "RGAPI-df45ad16-cfab-4b8b-a26f-2ecc59c968a8";
 const models = require('../models');
 
 router.get('/', (req, res) => {
@@ -54,40 +54,42 @@ router.get('/insertitems', (req, res) => {
                         totalGold: tgold,
                         sellGold: sgold
                     })
-                    .then(item => {
-                        if (item) {
-                            res.json({
-                                status: 1,
-                                statusCode: 'item/created',
-                                data: item.toJSON()
-                            });
-                        } else {
+                        .then(item => {
+                            if (item) {
+                                res.json({
+                                    status: 1,
+                                    statusCode: 'item/created',
+                                    data: item.toJSON()
+                                });
+                            } else {
+                                res.status(400).json({
+                                    status: 0,
+                                    statusCode: 'item/error',
+                                    description: "Couldn't create the item"
+                                });
+                            }
+                        })
+                        .catch(error => {
                             res.status(400).json({
                                 status: 0,
-                                statusCode: 'item/error',
-                                description: "Couldn't create the item"
+                                statusCode: 'database/error',
+                                description: error.toString()
                             });
-                        }
-                    })
-                    .catch(error => {
-                        res.status(400).json({
-                            status: 0,
-                            statusCode: 'database/error',
-                            description: error.toString()
                         });
-                    });
                 } else {
-                    res.status(400).json({
-                        status: 0,
-                        statusCode: 'item/wrong-body',
-                        description: 'The body is wrong! :('
-                    });
+                    console.log('The body of item is wrong! :(');
                 }
             }
 
+            res.status(400).json({
+                status: 1,
+                statusCode: 'Update success',
+                description: "update calls in items were right"
+            });
+
         })
         .catch(function (error) {
-           console.log(error);
+            console.log(error);
         });
 });
 
@@ -114,37 +116,39 @@ router.get('/assign', (req, res) => {
                             idItem: id,
                             fromItemId: fitem
                         })
-                        .then(formItem => {
-                            if (fromItem) {
-                                res.json({
-                                    status: 1,
-                                    statusCode: 'fromItem/created',
-                                    data: item.toJSON()
-                                });
-                            } else {
-                                res.status(400).json({
-                                    status: 0,
-                                    statusCode: 'fromItem/error',
-                                    description: "Couldn't create the fromItem"
-                                });
-                            }
-                        })
-                        .catch(error => {
-                            res.status(400).json({
-                                status: 0,
-                                statusCode: 'database/error',
-                                description: error.toString()
+                            .then(fromItem => {
+                                if (fromItem) {
+                                    res.json({
+                                        status: 1,
+                                        statusCode: 'fromItem/created',
+                                        data: item.toJSON()
+                                    });
+                                } else {
+                                    res.status(400).json({
+                                        status: 0,
+                                        statusCode: 'fromItem/error',
+                                        description: "Couldn't create the fromItem"
+                                    });
+                                }
+                            })
+                            .catch(error => {
+                                console.log('statusCode: database/error');
+                                console.log(error.toString());
                             });
-                        });
-                    }                    
+                    }
                 } else {
                     continue;
                 }
             }
 
+            res.status(400).json({
+                status: 1,
+                statusCode: 'Update success',
+                description: "update calls in fromItems were right"
+            });
         })
         .catch(function (error) {
-           console.log(error);
+            console.log(error);
         });
 });
 
@@ -170,52 +174,52 @@ router.get('/:id', (req, res) => {
             console.log(response.data.into);
         })
         .catch(function (error) {
-           console.log(error);
+            console.log(error);
         });
 });
 
 router.get('/recover/all', (req, res, next)=>{
     models.item
-    .findAll()
-    .then(item=>{
-        if (item){
-            res.json({
-                status: 1,
-                data: item
-            });
-        } else {
+        .findAll()
+        .then(item=>{
+            if (item){
+                res.json({
+                    status: 1,
+                    data: item
+                });
+            } else {
+                res.status(400).json({
+                    status:0
+                });
+            }
+        })
+        .catch(error => {
             res.status(400).json({
                 status:0
             });
-        }
-    })
-    .catch(error => {
-        res.status(400).json({
-            status:0
         });
-    });
 });
 
 router.get('/recover/allrelations', (req, res, next)=>{
     models.fromItem
-    .findAll()
-    .then(fromItem=>{
-        if (fromItem){
-            res.json({
-                status: 1,
-                data: fromItem
-            });
-        } else {
+        .findAll()
+        .then(fromItem=>{
+            if (fromItem){
+                res.json({
+                    status: 1,
+                    data: fromItem
+                });
+            } else {
+                res.status(400).json({
+                    status:0
+                });
+            }
+        })
+        .catch(error => {
             res.status(400).json({
                 status:0
             });
-        }
-    })
-    .catch(error => {
-        res.status(400).json({
-            status:0
         });
-    });
 });
 
 module.exports = router;
