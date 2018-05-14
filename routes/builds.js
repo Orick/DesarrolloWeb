@@ -79,9 +79,12 @@ router.post('/', (req, res, next) => {
     });
 });
 
-router.get('/all', (req, res, next)=>{
+post.get('/search', (req, res, next)=>{
+    firebaseAdmin.auth().verifyIdToken(req.body.token)
+        .then(decodedToken => {
+                var iduser = decodedToken.uid;
     models.builds
-    .findAll()
+    .findAll(where token: iduser )
     .then(builds=>{
         if (builds){
             res.json({
@@ -96,6 +99,12 @@ router.get('/all', (req, res, next)=>{
     }).catch(error => {
         res.status(400).json({
             status:0
+        });
+    });
+}).catch(error =>{
+        res.json({
+            code:'0',
+            description:'error al verificar token de usuario',
         });
     });
 });
