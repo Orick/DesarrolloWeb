@@ -1,0 +1,774 @@
+{
+	"info": {
+		"_postman_id": "dfc481b6-3d91-4062-9751-d43d825f045a",
+		"name": "Documentación Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Gestión de usuario",
+			"description": null,
+			"item": [
+				{
+					"name": "Crear usuarios",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "max@mail.com",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "pass123",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/assocciatedAccounts/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"assocciatedAccounts",
+								"create"
+							]
+						},
+						"description": "Entradas: Recibe un email y contraseña referentes a una cuenta a registrar.\n\nSalidas: Se creará el usuario en Firebase con los parámetros de entrada mencionados y se notificará con un status 1 si la creación resulta exitosa. En caso contrario se notificará con un status 0 si ocurre algún problema con Firebase o si el usuario ya existe."
+					},
+					"response": []
+				},
+				{
+					"name": "Asociar usuario con summoner",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjhiZjA2YWU3MGJhMjVkNzZiNWM0ZjMyYTk4YTU0N2JlYjE4YmM0MGUifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZGVzYXJyb2xsb3dlYi00MGZkOCIsImF1ZCI6ImRlc2Fycm9sbG93ZWItNDBmZDgiLCJhdXRoX3RpbWUiOjE1MjYwNTY5MDUsInVzZXJfaWQiOiJIeGw0N0thakZ2UmxaeXRmbjVXeXZ0cGVkeXMxIiwic3ViIjoiSHhsNDdLYWpGdlJsWnl0Zm41V3l2dHBlZHlzMSIsImlhdCI6MTUyNjA1NjkwNSwiZXhwIjoxNTI2MDYwNTA1LCJlbWFpbCI6Im1heEBtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJtYXhAbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.XpLzy3XsFPPeBuUmhN11a0_F3cZWIKad0teC5LaS3VDICMQwkD5Iw7cSucXrv5YEqRJhVnfbNrvWX-9uKZPxAAwt0EoFtXokbjNUP28t2ZaHNgWXOuCcZPRM5L4tueXULXAKFulwvli6rAdTpHa8wqipGTtW26wynEY2AxJA58luSdxsrj6SoK0wGgbgmsNvnULqLEXkp6M6Oxy2qmTeh_U4yUsK7RWvE2MYAmd8Mfku8jan367MzDEGVq9DZ2IAM_YEEhTUsu0kQoebXcJt7SQ8yz7A8SUs6BPenVmAaM8FugJhFvgf2yJVTO99pDgCP40884rVa-PqD2lTUGinTA",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "summonerid",
+									"value": "113649",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/assocciatedAccounts/assig",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"assocciatedAccounts",
+								"assig"
+							]
+						},
+						"description": "Entradas: Recibe el token de usuario de Firebase y el id del summoner.\n            \nSalidas: Asocia el summoner indicado con el usuario que se encuentra actualmente logueado  y notifica con un status 1 en caso de un registro correcto. En caso contrario si ocurre algún problema con la base de datos o el hay problemas para verificar el usuario se notificará con un status 0."
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener los summoners asociados a un usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjhiZjA2YWU3MGJhMjVkNzZiNWM0ZjMyYTk4YTU0N2JlYjE4YmM0MGUifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZGVzYXJyb2xsb3dlYi00MGZkOCIsImF1ZCI6ImRlc2Fycm9sbG93ZWItNDBmZDgiLCJhdXRoX3RpbWUiOjE1MjYwNTY5MDUsInVzZXJfaWQiOiJIeGw0N0thakZ2UmxaeXRmbjVXeXZ0cGVkeXMxIiwic3ViIjoiSHhsNDdLYWpGdlJsWnl0Zm41V3l2dHBlZHlzMSIsImlhdCI6MTUyNjA1NjkwNSwiZXhwIjoxNTI2MDYwNTA1LCJlbWFpbCI6Im1heEBtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJtYXhAbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.XpLzy3XsFPPeBuUmhN11a0_F3cZWIKad0teC5LaS3VDICMQwkD5Iw7cSucXrv5YEqRJhVnfbNrvWX-9uKZPxAAwt0EoFtXokbjNUP28t2ZaHNgWXOuCcZPRM5L4tueXULXAKFulwvli6rAdTpHa8wqipGTtW26wynEY2AxJA58luSdxsrj6SoK0wGgbgmsNvnULqLEXkp6M6Oxy2qmTeh_U4yUsK7RWvE2MYAmd8Mfku8jan367MzDEGVq9DZ2IAM_YEEhTUsu0kQoebXcJt7SQ8yz7A8SUs6BPenVmAaM8FugJhFvgf2yJVTO99pDgCP40884rVa-PqD2lTUGinTA",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/assocciatedAccounts/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"assocciatedAccounts",
+								"get"
+							]
+						},
+						"description": "Entradas: Recibe el token del usuario en Firebase.\n            \nSalidas: Regresa todos los summoners asociados a la cuenta actualmente logueada y notifica con status 1. De lo contrario si hay un problema con la base de datos, la verificación del usuario o un summoner no existe se notificará con status 0."
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar relación entre usuario y summoner",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjhiZjA2YWU3MGJhMjVkNzZiNWM0ZjMyYTk4YTU0N2JlYjE4YmM0MGUifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZGVzYXJyb2xsb3dlYi00MGZkOCIsImF1ZCI6ImRlc2Fycm9sbG93ZWItNDBmZDgiLCJhdXRoX3RpbWUiOjE1MjYwNTY5MDUsInVzZXJfaWQiOiJIeGw0N0thakZ2UmxaeXRmbjVXeXZ0cGVkeXMxIiwic3ViIjoiSHhsNDdLYWpGdlJsWnl0Zm41V3l2dHBlZHlzMSIsImlhdCI6MTUyNjA1NjkwNSwiZXhwIjoxNTI2MDYwNTA1LCJlbWFpbCI6Im1heEBtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJtYXhAbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.XpLzy3XsFPPeBuUmhN11a0_F3cZWIKad0teC5LaS3VDICMQwkD5Iw7cSucXrv5YEqRJhVnfbNrvWX-9uKZPxAAwt0EoFtXokbjNUP28t2ZaHNgWXOuCcZPRM5L4tueXULXAKFulwvli6rAdTpHa8wqipGTtW26wynEY2AxJA58luSdxsrj6SoK0wGgbgmsNvnULqLEXkp6M6Oxy2qmTeh_U4yUsK7RWvE2MYAmd8Mfku8jan367MzDEGVq9DZ2IAM_YEEhTUsu0kQoebXcJt7SQ8yz7A8SUs6BPenVmAaM8FugJhFvgf2yJVTO99pDgCP40884rVa-PqD2lTUGinTA",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "summonerId",
+									"value": "113649",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/assocciatedAccounts/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"assocciatedAccounts",
+								"delete"
+							]
+						},
+						"description": "Entradas: Recibe el token del usuario en Firebase y un summonerId.\n        \nSalidas: Borra la relación entre un usuario y un summoner, entrega status 1 y delete ok si realiza el borrado y status 0 si no lo logra."
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar contraseña",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjhiZjA2YWU3MGJhMjVkNzZiNWM0ZjMyYTk4YTU0N2JlYjE4YmM0MGUifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZGVzYXJyb2xsb3dlYi00MGZkOCIsImF1ZCI6ImRlc2Fycm9sbG93ZWItNDBmZDgiLCJhdXRoX3RpbWUiOjE1MjYwNTY5MDUsInVzZXJfaWQiOiJIeGw0N0thakZ2UmxaeXRmbjVXeXZ0cGVkeXMxIiwic3ViIjoiSHhsNDdLYWpGdlJsWnl0Zm41V3l2dHBlZHlzMSIsImlhdCI6MTUyNjA1NjkwNSwiZXhwIjoxNTI2MDYwNTA1LCJlbWFpbCI6Im1heEBtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJtYXhAbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.XpLzy3XsFPPeBuUmhN11a0_F3cZWIKad0teC5LaS3VDICMQwkD5Iw7cSucXrv5YEqRJhVnfbNrvWX-9uKZPxAAwt0EoFtXokbjNUP28t2ZaHNgWXOuCcZPRM5L4tueXULXAKFulwvli6rAdTpHa8wqipGTtW26wynEY2AxJA58luSdxsrj6SoK0wGgbgmsNvnULqLEXkp6M6Oxy2qmTeh_U4yUsK7RWvE2MYAmd8Mfku8jan367MzDEGVq9DZ2IAM_YEEhTUsu0kQoebXcJt7SQ8yz7A8SUs6BPenVmAaM8FugJhFvgf2yJVTO99pDgCP40884rVa-PqD2lTUGinTA",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "pass222",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/assocciatedAccounts/updateUserPassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"assocciatedAccounts",
+								"updateUserPassword"
+							]
+						},
+						"description": "Entrada: Token usuario y nueva contraseña\nSalida: Cambio de contraseña "
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Summoner",
+			"description": null,
+			"item": [
+				{
+					"name": "Busca summoner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/summoner/find/:server/:summonerName",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"summoner",
+								"find",
+								":server",
+								":summonerName"
+							],
+							"variable": [
+								{
+									"key": "server",
+									"value": "la2"
+								},
+								{
+									"key": "summonerName",
+									"value": "orick"
+								}
+							]
+						},
+						"description": "Entradas: Recibe el nombre del summoner y el servidor al que pertenece.\n\nSalidas: Se buscará en la base de datos si el summoner solicitado esta registrado. Si existe se notifica con un status 1 que el summoner ya se ingreso, en caso contrario se ingresará la información obtenido de la API a la base de datos. Si hay problemas con el ingresó del summoner o el nombre entregado es invalido se notificara con un status 0, de lo contrario se notifica un status 1."
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar información de summoner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/summoner/update/:server/:summonerName",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"summoner",
+								"update",
+								":server",
+								":summonerName"
+							],
+							"variable": [
+								{
+									"key": "server",
+									"value": "la2"
+								},
+								{
+									"key": "summonerName",
+									"value": "orick"
+								}
+							]
+						},
+						"description": "Entradas: Recibe el nombre del summoner y el servidor al que pertenece.\n\nSalidas: Se buscará en la base de datos de datos si el summoner solicitado está registrado. Si el nombre del summoner no es valido, no exsite o ocurre un error en la consulta se notificara con un status 0. Si existe se realizan los cambios en sus atributos y se notifica con un status 1 en caso de una actualización correcta, de lo contrario se notifica con status 0."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar liga de un summoner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/league/find/:server/:summonerId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"league",
+								"find",
+								":server",
+								":summonerId"
+							],
+							"variable": [
+								{
+									"key": "server",
+									"value": "la2"
+								},
+								{
+									"key": "summonerId",
+									"value": "113649"
+								}
+							]
+						},
+						"description": "Entradas: Recibe el id del summoner y el servidor al que pertenece.\n\nSalidas: Solicita los datos de la liga del summoner a la API y los ingresa en el modelo league, si hay problemas con el ingreso de la liga se notifica son un status 0. En caso contrario se relaciona la liga con el summoner y se notifica con un status 1. Si ocurre un problema con la base de datos se notifica con un status 0."
+					},
+					"response": []
+				},
+				{
+					"name": "Update league de summoner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/league/update/:server/:summonerId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"league",
+								"update",
+								":server",
+								":summonerId"
+							],
+							"variable": [
+								{
+									"key": "server",
+									"value": "la2"
+								},
+								{
+									"key": "summonerId",
+									"value": "113649"
+								}
+							]
+						},
+						"description": "Entradas: Recibe el id del summoner y el servidor al que pertenece.\n\nSalidas: Actualiza los datos de la liga del summoner con los datos entregados por la API y notfica con un status 1. Si ocurre algún error o el id del summoner es invalido se notifica con un status 0. "
+					},
+					"response": []
+				},
+				{
+					"name": "Crear o actualizar Matchlist de summoner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/matchlist/find/:server/:summonerId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"matchlist",
+								"find",
+								":server",
+								":summonerId"
+							],
+							"variable": [
+								{
+									"key": "server",
+									"value": "la2"
+								},
+								{
+									"key": "summonerId",
+									"value": "118550"
+								}
+							]
+						},
+						"description": "Entradas: Recibe el accountId del summoner y el servidor al que pertenece.\n\nSalidas: Si el summoner no tiene matchs asociados se retornarán los ultimos 19 matchs, en caso de tener match asociados se actualizara la matchlist y se retornaran los match que se agregaron."
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener todos los match de un summoner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/matchlist/allMatch/:server/:accountId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"matchlist",
+								"allMatch",
+								":server",
+								":accountId"
+							],
+							"variable": [
+								{
+									"key": "server",
+									"value": "la2"
+								},
+								{
+									"key": "accountId",
+									"value": "118550"
+								}
+							]
+						},
+						"description": "Entradas: Recibe un server, accountId del summoner.\n\nSalidas: Entrega todos los match de un summoner"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Champions",
+			"description": null,
+			"item": [
+				{
+					"name": "Descargar campeones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/champions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"champions"
+							]
+						},
+						"description": "Descarga campeones"
+					},
+					"response": [
+						{
+							"id": "02518c0d-68b5-4091-9edd-689c335463ba",
+							"name": "Default",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/champions",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"champions"
+									]
+								}
+							},
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Simulador",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/champions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"champions"
+							]
+						},
+						"description": "Entrega los datos de todos los campeones y todos los items"
+					},
+					"response": [
+						{
+							"id": "3b1fbbf6-1cf5-455f-b812-a8b2eb3fc805",
+							"name": "Default",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/champions",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"champions"
+									]
+								}
+							},
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Mostrar todos los campeones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"all"
+							]
+						},
+						"description": "Entrega todos los campeones"
+					},
+					"response": [
+						{
+							"id": "edafcb9e-fc39-4cfd-8018-68ffbb277860",
+							"name": "Default",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"all"
+									]
+								}
+							},
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Items",
+			"description": null,
+			"item": [
+				{
+					"name": "Descargar items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/items/insertitems",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"items",
+								"insertitems"
+							]
+						},
+						"description": "Descarga los items "
+					},
+					"response": [
+						{
+							"id": "9b87c880-c0bb-4179-9256-8e3ddd66ee15",
+							"name": "Default",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/items/insertitems",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"items",
+										"insertitems"
+									]
+								}
+							},
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Reliacionar items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/items/assign",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"items",
+								"assign"
+							]
+						},
+						"description": "Establece las relaciones entre los items"
+					},
+					"response": [
+						{
+							"id": "2ca4ca90-5159-4902-bdb5-30a25d5bbda8",
+							"name": "Default",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/items/assign",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"items",
+										"assign"
+									]
+								}
+							},
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Builds",
+			"description": null,
+			"item": [
+				{
+					"name": "Guarda build de un usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/builds",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"builds"
+							]
+						},
+						"description": "Recibe token de usuario e idchamp1, idchamp2 y hasta 12 items los cuales los guarda en la base de datos."
+					},
+					"response": [
+						{
+							"id": "b42e3566-d840-4c35-bf4e-a5aad6620e8b",
+							"name": "Default",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/builds",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"builds"
+									]
+								}
+							},
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		}
+	]
+}

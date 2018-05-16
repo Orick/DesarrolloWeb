@@ -3,7 +3,7 @@ const router = express.Router();
 const models = require('../models');
 const axios = require('axios');
 
-const apiKey = 'RGAPI-a5bd1a27-7f42-4250-b0dc-6c60185e712a';
+const apiKey = require('../config/apiriot');
 
 router.get('/find/:server/:accountId', (req, res, next) => {
     models.summoner

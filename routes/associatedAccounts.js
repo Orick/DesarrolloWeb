@@ -123,7 +123,6 @@ router.post('/assig', (req, res, next) => {
 // });
 
 router.post('/create',(req,res,next)=>{
-
     firebaseAdmin.auth().getUserByEmail(req.body.email)
         .then(function(userRecord) {
             res.json({
@@ -208,14 +207,23 @@ router.post('/get', (req, res, next) => {
                 include:{
                     model:models.summoner,
                     through :'associateUserSum',
-                    as: 'userSummonerX'
+                    as: 'userSummonerX',
+                    include:{
+                        model:models.league,
+                        as : 'summonerLeague'
+                    }
+
                 }
             }).then(users => {
                 if (users) {
+                    dataSummoners = users[0].userSummonerX.map(d => {
+                        delete d.dataValues.associateUserSum;
+                        return d;
+                    });
                     res.json({
                         status: 1,
                         statusCode: 'userSummoner/get/listing',
-                        data: users
+                        data: dataSummoners
                     });
                 } else {
                     res.status(400).json({
