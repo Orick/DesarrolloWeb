@@ -79,12 +79,14 @@ router.post('/', (req, res, next) => {
     });
 });
 
-post.get('/search', (req, res, next)=>{
+router.post('/search', (req, res, next)=>{
     firebaseAdmin.auth().verifyIdToken(req.body.token)
         .then(decodedToken => {
                 var iduser = decodedToken.uid;
     models.builds
-    .findAll(where token: iduser )
+    .findAll({
+        where: {token: iduser}
+    })
     .then(builds=>{
         if (builds){
             res.json({
