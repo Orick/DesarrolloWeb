@@ -67,7 +67,7 @@
 							"urlencoded": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjhiZjA2YWU3MGJhMjVkNzZiNWM0ZjMyYTk4YTU0N2JlYjE4YmM0MGUifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZGVzYXJyb2xsb3dlYi00MGZkOCIsImF1ZCI6ImRlc2Fycm9sbG93ZWItNDBmZDgiLCJhdXRoX3RpbWUiOjE1MjYwNTY5MDUsInVzZXJfaWQiOiJIeGw0N0thakZ2UmxaeXRmbjVXeXZ0cGVkeXMxIiwic3ViIjoiSHhsNDdLYWpGdlJsWnl0Zm41V3l2dHBlZHlzMSIsImlhdCI6MTUyNjA1NjkwNSwiZXhwIjoxNTI2MDYwNTA1LCJlbWFpbCI6Im1heEBtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJtYXhAbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.XpLzy3XsFPPeBuUmhN11a0_F3cZWIKad0teC5LaS3VDICMQwkD5Iw7cSucXrv5YEqRJhVnfbNrvWX-9uKZPxAAwt0EoFtXokbjNUP28t2ZaHNgWXOuCcZPRM5L4tueXULXAKFulwvli6rAdTpHa8wqipGTtW26wynEY2AxJA58luSdxsrj6SoK0wGgbgmsNvnULqLEXkp6M6Oxy2qmTeh_U4yUsK7RWvE2MYAmd8Mfku8jan367MzDEGVq9DZ2IAM_YEEhTUsu0kQoebXcJt7SQ8yz7A8SUs6BPenVmAaM8FugJhFvgf2yJVTO99pDgCP40884rVa-PqD2lTUGinTA",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjhiZjA2YWU3MGJhMjVkNzZiNWM0ZjMyYTk4YTU0N2JlYjE4YmM0MGUifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vZGVzYXJyb2xsb3dlYi00MGZkOCIsImF1ZCI6ImRlc2Fycm9sbG93ZWItNDBmZDgiLCJhdXRoX3RpbWUiOjE1MjYzOTI4NjYsInVzZXJfaWQiOiJPSml3OFBpcE5iVkxlS0RwNExrb3BqUTJ6UnIxIiwic3ViIjoiT0ppdzhQaXBOYlZMZUtEcDRMa29walEyelJyMSIsImlhdCI6MTUyNjM5Mjg2NiwiZXhwIjoxNTI2Mzk2NDY2LCJlbWFpbCI6ImFzZGZnQG1haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImFzZGZnQG1haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.CNIOEVGd6N9K1x-l1lRe44u5HzdKExtJg7f5yBBmfZ51PU-p8gHcpPozFYLlV5723X2hqZ2YHFT0LSso0OP21GG0iXAabJFYLfmRiOLfKYQiPq1qLp8VVc9b-gB5GQwB8za-i6ry0wg5Y8ZIeQzMf35OwqeEnoWaTYB4qGz9TUjSFNOuJSOvH_lKk_9_bBXeUhzCvbccBdBWtUv-1ksNj53ciOS2StAy5ZZ7x50UFxw0cxQCd5sam_lPHYRDroaVKQLSRkEj36GJfwauF7VezwtY6HJxhc2qnJpcYqcrZxblaT_XQaPeXkd1xuMtk0TWpyBslhmB3veEqDei77xJ7A",
 									"description": "",
 									"type": "text"
 								},
@@ -80,15 +80,27 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/assocciatedAccounts/assig",
+							"raw": "http://localhost:8080/matchlist/find/:server/:summonerIdaaa",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"assocciatedAccounts",
-								"assig"
+								"matchlist",
+								"find",
+								":server",
+								":summonerIdaaa"
+							],
+							"variable": [
+								{
+									"key": "server",
+									"value": ""
+								},
+								{
+									"key": "summonerIdaaa",
+									"value": ""
+								}
 							]
 						},
 						"description": "Entradas: Recibe el token de usuario de Firebase y el id del summoner.\n            \nSalidas: Asocia el summoner indicado con el usuario que se encuentra actualmente logueado  y notifica con un status 1 en caso de un registro correcto. En caso contrario si ocurre algún problema con la base de datos o el hay problemas para verificar el usuario se notificará con un status 0."
@@ -458,7 +470,7 @@
 					},
 					"response": [
 						{
-							"id": "02518c0d-68b5-4091-9edd-689c335463ba",
+							"id": "89bc1186-96a7-4e05-a954-2d6c51cd33e1",
 							"name": "Default",
 							"originalRequest": {
 								"method": "GET",
@@ -511,7 +523,7 @@
 					},
 					"response": [
 						{
-							"id": "3b1fbbf6-1cf5-455f-b812-a8b2eb3fc805",
+							"id": "8cb37b74-6840-4022-91a2-7fbb99d24614",
 							"name": "Default",
 							"originalRequest": {
 								"method": "GET",
@@ -564,7 +576,7 @@
 					},
 					"response": [
 						{
-							"id": "edafcb9e-fc39-4cfd-8018-68ffbb277860",
+							"id": "43df917d-0ca9-4c29-ad9e-992fee571f02",
 							"name": "Default",
 							"originalRequest": {
 								"method": "GET",
@@ -624,7 +636,7 @@
 					},
 					"response": [
 						{
-							"id": "9b87c880-c0bb-4179-9256-8e3ddd66ee15",
+							"id": "f4a9b9cf-e26d-40db-83c7-f5401bfc97b0",
 							"name": "Default",
 							"originalRequest": {
 								"method": "GET",
@@ -679,7 +691,7 @@
 					},
 					"response": [
 						{
-							"id": "2ca4ca90-5159-4902-bdb5-30a25d5bbda8",
+							"id": "73cd4567-3c5a-48f4-be06-0faf0c9c18e1",
 							"name": "Default",
 							"originalRequest": {
 								"method": "GET",
@@ -739,7 +751,7 @@
 					},
 					"response": [
 						{
-							"id": "b42e3566-d840-4c35-bf4e-a5aad6620e8b",
+							"id": "5f6a0cfd-9e38-4586-b9b0-08691c43e14e",
 							"name": "Default",
 							"originalRequest": {
 								"method": "POST",
@@ -767,6 +779,63 @@
 							"body": ""
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "Stats",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8080/stats/insertStatistics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/stats/insertStatistics",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stats",
+								"insertStatistics"
+							]
+						},
+						"description": "Entradas: No recibe parámetros de entrada.\n\nSalidas: Inserta la información de la API referente a las estadisticas de los personajes, según sus roles, en el modelo stat."
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/stats/recover/all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/stats/recover/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stats",
+								"recover",
+								"all"
+							]
+						},
+						"description": "Entradas: No recibe parametros de Entrada.\n\nSalida: Regresa la informaci ́on de todos los items contenidos en el\nmodelo item. Si la consulta esta vac ́ıa o bien ocurre algun problema al momento de la consulta se notificara con un status 0, de lo contrario se notifica con un status 1."
+					},
+					"response": []
 				}
 			]
 		}

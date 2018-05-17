@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5d6e01e3-01d5-4cbc-ac80-900f283dad90" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/builds.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/builds.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="builds.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/routes/builds.js">
+      <file leaf-file-name="associatedAccounts.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routes/associatedAccounts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="88" column="5" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
+            <state relative-caret-position="90">
+              <caret line="5" column="19" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -105,6 +104,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -126,7 +126,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -196,12 +195,13 @@
       <workItem from="1526326476792" duration="224000" />
       <workItem from="1526326842450" duration="27000" />
       <workItem from="1526356942844" duration="5988000" />
-      <workItem from="1526495609429" duration="613000" />
+      <workItem from="1526495609429" duration="1667000" />
+      <workItem from="1526567744162" duration="262000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122601000" />
+    <option name="totallyTimeSpent" value="123917000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -248,6 +248,27 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/routes/builds.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1458">
+          <caret line="81" column="42" selection-start-line="81" selection-start-column="42" selection-end-line="81" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/associatedAccounts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/summoner.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1728">
+          <caret line="96" column="20" selection-start-line="96" selection-start-column="14" selection-end-line="96" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/matchList.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1411">
@@ -492,13 +513,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/associatedAccounts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3618">
-          <caret line="201" column="20" selection-start-line="201" selection-start-column="20" selection-end-line="201" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/league.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -506,40 +520,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Documentación Api.postman_collection.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/apiriot.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
-          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+          <caret line="2" column="24" lean-forward="true" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/stats_old.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/stats.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/summoner.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="62" lean-forward="true" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
+        <state relative-caret-position="126">
+          <caret line="7" column="20" lean-forward="true" selection-start-line="7" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/matchList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9234">
-          <caret line="513" column="17" selection-start-line="513" selection-start-column="17" selection-end-line="513" selection-end-column="17" />
+        <state relative-caret-position="18">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/builds.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="88" column="5" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
+        <state relative-caret-position="307">
+          <caret line="81" column="42" selection-start-line="81" selection-start-column="42" selection-end-line="81" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/associatedAccounts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="19" />
         </state>
       </provider>
     </entry>
