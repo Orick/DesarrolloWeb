@@ -4,14 +4,42 @@ const app = express();
 const bodyParser = require('body-parser');
 const models = require('../models');
 const router = express.Router();
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-router.get('/', (req, res, next)=>{
-    models.item.findAll()
+router.post('/', (req, res, next)=>{
+    var idchamp1 = req.body['idchamp1'];
+    var idchamp2 = req.body['idchamp2'];
+    var iditem11 = req.body['iditem11'];
+    var iditem12 = req.body['iditem12'];
+    var iditem13 = req.body['iditem13'];
+    var iditem14 = req.body['iditem14'];
+    var iditem15 = req.body['iditem15'];
+    var iditem16 = req.body['iditem16'];
+    var iditem21 = req.body['iditem21'];
+    var iditem22 = req.body['iditem22'];
+    var iditem23 = req.body['iditem23'];
+    var iditem24 = req.body['iditem24'];
+    var iditem25 = req.body['iditem25'];
+    var iditem26 = req.body['iditem26'];
+    models.item.findAll({
+        where: {
+            id: {
+                [Op.or]: [iditem11, iditem12,iditem13,iditem14,iditem15,iditem16,iditem21,iditem22,iditem23,iditem24,iditem25,iditem26]
+            }
+        }
+    })
     .then(item=>{
         if (item){
-            models.champions.findAll()
+            models.champions.findAll({
+                where: {
+                    id: {
+                        [Op.or]: [idchamp1, idchamp2]
+                    }
+                }
+            })
             .then(champions=>{
                 if (champions){
                     res.json({
@@ -41,6 +69,7 @@ router.get('/', (req, res, next)=>{
             status:0
         });
     });
+    
 });
 
     module.exports = router;

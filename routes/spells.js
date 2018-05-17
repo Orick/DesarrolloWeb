@@ -4,10 +4,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const models = require('../models');
 const router = express.Router();
+const apiKey = require('../config/apiriot');
 
 app.use(bodyParser.urlencoded({ extended: false }));
-
-var apiKey = 'RGAPI-cd3ec24d-9d89-4e36-9a98-7090bfe808e9';
 
 router.get('/', async (req, res, next) =>{
 

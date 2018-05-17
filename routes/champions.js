@@ -4,28 +4,12 @@ const app = express();
 const bodyParser = require('body-parser');
 const models = require('../models');
 const router = express.Router();
+const apiKey = require('../config/apiriot');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-var apiKey = 'RGAPI-cd3ec24d-9d89-4e36-9a98-7090bfe808e9';
-
-/*async function champions_name (lista){
-    console.log(lista);
-    const listKeys = Object.keys(lista);
-    let nombres = [];
-    listKeys.map(key =>{
-        nombres.push(lista[key]);
-
-    });
-            return nombres;
-}
-
-async function logkeys(nombres){
-    nombres.map(nombre=>{
-                console.log(a.data[nombre].id)
-            });
-}
-*/
 
 router.get('/', async (req, res, next) =>{
 
@@ -172,6 +156,35 @@ router.get('/', async (req, res, next) =>{
 router.get('/all', (req, res, next)=>{
     models.champions
     .findAll()
+    .then(champions=>{
+        if (champions){
+            res.json({
+                status: 1,
+            data: champions
+            });
+        } else {
+            res.status(400).json({
+                status:0
+            });
+        }
+    }).catch(error => {
+        res.status(400).json({
+            status:0
+        });
+    });
+});
+
+router.get('/:id1/:id2', (req, res, next)=>{
+    const id1 = req.params.id1;
+    const id2 = req.params.id2;
+    models.champions
+    .findAll({
+        where: {
+            id: {
+                [Op.or]: [id1, id2]
+            }
+        }
+    })
     .then(champions=>{
         if (champions){
             res.json({
