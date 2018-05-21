@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-const apiKey = "RGAPI-df45ad16-cfab-4b8b-a26f-2ecc59c968a8";
+const apiKey = require('../config/apiriot');
 const models = require('../models');
 
 router.get('/', (req, res) => {
@@ -116,25 +116,25 @@ router.get('/assign', (req, res) => {
                             idItem: id,
                             fromItemId: fitem
                         })
-                            .then(fromItem => {
-                                if (fromItem) {
-                                    res.json({
-                                        status: 1,
-                                        statusCode: 'fromItem/created',
-                                        data: item.toJSON()
-                                    });
-                                } else {
-                                    res.status(400).json({
-                                        status: 0,
-                                        statusCode: 'fromItem/error',
-                                        description: "Couldn't create the fromItem"
-                                    });
-                                }
-                            })
-                            .catch(error => {
-                                console.log('statusCode: database/error');
-                                console.log(error.toString());
-                            });
+                        .then(fromItem => {
+                            if (fromItem) {
+                                res.json({
+                                    status: 1,
+                                    statusCode: 'fromItem/created',
+                                    data: item.toJSON()
+                                });
+                            } else {
+                                res.status(400).json({
+                                    status: 0,
+                                    statusCode: 'fromItem/error',
+                                    description: "Couldn't create the fromItem"
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.log('statusCode: database/error');
+                            console.log(error.toString());
+                        });
                     }
                 } else {
                     continue;
@@ -153,29 +153,29 @@ router.get('/assign', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    let url = 'https://la2.api.riotgames.com/lol/static-data/v3/items/' + req.params.id + '?locale=es_MX&tags=all&itemData=all&api_key=' + apiKey;
-
-    axios.get(url)
-        .then(function (response) {
-            console.log(response.data.id);
-            console.log(response.data.name);
-            console.log(response.data.stats.FlatHPPoolMod);
-            console.log(response.data.stats.FlatMPPoolMod);
-            console.log(response.data.stats.FlatPhysicalDamageMod);
-            console.log(response.data.stats.FlatArmorMod);
-            console.log(response.data.stats.FlatMagicDamageMod);
-            console.log(response.data.stats.FlatSpellBlockMod);
-            console.log(response.data.stats.PercentAttackSpeedMod);
-            console.log(response.data.description);
-            console.log(response.data.gold.base);
-            console.log(response.data.gold.total);
-            console.log(response.data.gold.sell);
-            console.log(response.data.from);
-            console.log(response.data.into);
-        })
-        .catch(function (error) {
-            console.log(error);
+    models.item
+    .findAll({
+        where: {
+          id: req.params.id
+        }
+      })
+    .then(item=>{
+        if (item){
+            res.json({
+                status: 1,
+                data: item
+            });
+        } else {
+            res.status(400).json({
+                status:0
+            });
+        }
+    })
+    .catch(error => {
+        res.status(400).json({
+            status:0
         });
+    });
 });
 
 router.get('/recover/all', (req, res, next)=>{
