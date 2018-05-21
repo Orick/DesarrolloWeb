@@ -42,6 +42,22 @@ router.post('/', (req, res, next)=>{
             })
             .then(champions=>{
                 if (champions){
+                    console.log(champions[0].id + ' ' + champions[1].id);
+                    atackDamage = champions[0].atackDamage;
+                    attackDamagePerLevel = champions[0].attackDamagePerLevel;
+                    attackSpeedOffSet = champions[0].attackSpeedOffSet;
+                    attackSpeedPerLevel = champions[0].attackSpeedPerLevel;
+                    crit = champions[0].crit;
+                    critPerLevel = champions[0].critPerLevel;
+                    damage = [];
+                    damage.append(atackDamage);
+                    damage.append(attackDamagePerLevel);
+                    damage.append(attackSpeedOffSet);
+                    damage.append(attackSpeedPerLevel);
+                    damage.append(crit);
+                    damage.append(critPerLevel);
+
+                    console.log()
                     res.json({
                         status: 1,
                         items: item,
@@ -71,5 +87,28 @@ router.post('/', (req, res, next)=>{
     });
     
 });
+
+const calcularDaño = async (damage,items) =>{
+    
+};
+
+const obtenerChamps = async (idchamp1,idchamp2) =>{
+    return new Promise((resolve,reject)=>{
+    models.champions.findAll({
+        where: {
+            id: {
+                [Op.or]: [idchamp1, idchamp2]
+            }
+        }
+    })
+    .then(champions=>{
+        if (champions){
+            resolve({champ:champions});
+        }
+    }).catch(error => {
+        reject({error:error});
+    });
+    });
+};
 
     module.exports = router;

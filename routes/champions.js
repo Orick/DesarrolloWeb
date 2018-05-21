@@ -68,6 +68,7 @@ router.get('/', async (req, res, next) =>{
                 var mpRegenPerLevel = a.data[lista[i]].stats.mpregenperlevel;
                 var spellBlock = a.data[lista[i]].stats.spellblock;
                 var spellBlockPerLevel = a.data[lista[i]].stats.spellblockperlevel;
+                var image = a.data[lista[i]].image.full;
 
                 datos.push(id);
                 datos.push(name);
@@ -91,6 +92,7 @@ router.get('/', async (req, res, next) =>{
                 datos.push(mpRegenPerLevel);
                 datos.push(spellBlock);
                 datos.push(spellBlockPerLevel);
+                datos.push(image)
                 
                 if (id && name) {
                     console.log("entre al if")
@@ -117,7 +119,8 @@ router.get('/', async (req, res, next) =>{
                         mpRegen: mpRegen,
                         mpRegenPerLevel: mpRegenPerLevel,
                         spellBlock: spellBlock,
-                        spellBlockPerLevel: spellBlockPerLevel
+                        spellBlockPerLevel: spellBlockPerLevel,
+                        image: image
 
                     }).then(champion => {
                         if (champion) {

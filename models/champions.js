@@ -91,6 +91,10 @@ module.exports = (sequelize, DataTypes) => {
         spellBlockPerLevel: {
             type: DataTypes.DOUBLE,
             allowNull: false
+        },
+        image: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     });
 };
