@@ -17,6 +17,9 @@ router.get('/insertitems', (req, res) => {
         .then(function (response) {
             //res.json(response.data.data);
 
+            let domain = "http://ddragon.leagueoflegends.com/cdn/";
+            let version = response.data.version;
+            let section = "/img/item/"
             let items = response.data.data;
             let keys = Object.keys(items);
 
@@ -35,8 +38,8 @@ router.get('/insertitems', (req, res) => {
                 let bgold = items[key].gold.base;
                 let tgold = items[key].gold.total;
                 let sgold = items[key].gold.sell;
-                //let from = items[key].from;
-                //let into = items[key].into;
+                let image = items[key].image.full;
+                let image_url = domain.concat(version,section,image);
 
                 if (id && name && descrip) {
                     models.item.create({
@@ -52,7 +55,8 @@ router.get('/insertitems', (req, res) => {
                         plainDescription: descrip,
                         baseGold: bgold,
                         totalGold: tgold,
-                        sellGold: sgold
+                        sellGold: sgold,
+                        urlImage: image_url
                     })
                         .then(item => {
                             if (item) {
@@ -176,6 +180,45 @@ router.get('/:id', (req, res) => {
             status:0
         });
     });
+});
+
+router.get('/test/test', (req, res) => {
+    let url = 'https://la2.api.riotgames.com/lol/static-data/v3/items?locale=es_MX&itemListData=all&tags=all&api_key=' + apiKey;
+
+    axios.get(url)
+        .then(function (response) {
+            //res.json(response.data.data);
+
+            let domain = "http://ddragon.leagueoflegends.com/cdn/";
+            let version = response.data.version;
+            let section = "/img/item/"
+            let items = response.data.data;
+            let keys = Object.keys(items);
+
+            for(let i=0;i<keys.length;i++){
+                let key = keys[i];
+                let id = items[key].id;
+                let name = items[key].name;
+                let hpmod = items[key].stats.FlatHPPoolMod;
+                let mpmod = items[key].stats.FlatMPPoolMod;
+                let phyattack = items[key].stats.FlatPhysicalDamageMod;
+                let armor = items[key].stats.FlatArmorMod;
+                let magicattack = items[key].stats.FlatMagicDamageMod;
+                let magicre = items[key].stats.FlatSpellBlockMod;
+                let attackspeed = items[key].stats.PercentAttackSpeedMod;
+                let descrip = items[key].description;
+                let bgold = items[key].gold.base;
+                let tgold = items[key].gold.total;
+                let sgold = items[key].gold.sell;
+                let image = items[key].image.full;
+                let image_url = domain.concat(version,section,image);
+                console.log(image_url);
+                break
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 });
 
 router.get('/recover/all', (req, res, next)=>{

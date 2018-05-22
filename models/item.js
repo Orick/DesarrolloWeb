@@ -45,6 +45,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         sellGold: {
             type: DataTypes.INTEGER
+        },
+        urlImage: {
+            type: DataTypes.STRING
         }
     });
 
