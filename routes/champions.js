@@ -177,7 +177,7 @@ router.get('/all', (req, res, next)=>{
     });
 });
 
-router.get('/:id1/:id2', (req, res, next)=>{
+/*router.get('/:id1/:id2', (req, res, next)=>{
     const id1 = req.params.id1;
     const id2 = req.params.id2;
     models.champions
@@ -193,6 +193,30 @@ router.get('/:id1/:id2', (req, res, next)=>{
             res.json({
                 status: 1,
             data: champions
+            });
+        } else {
+            res.status(400).json({
+                status:0
+            });
+        }
+    }).catch(error => {
+        res.status(400).json({
+            status:0
+        });
+    });
+});
+*/
+router.get('/imagen/:id1', (req, res, next)=>{
+    const id1 = req.params.id1;
+    models.champions
+    .findOne({
+        where: {id: id1}
+    })
+    .then(champion=>{
+        console.log(champion)
+        if (champion){
+            res.json({
+            data: champion.image
             });
         } else {
             res.status(400).json({
