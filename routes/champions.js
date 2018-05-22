@@ -161,6 +161,7 @@ router.get('/all', (req, res, next)=>{
     .findAll()
     .then(champions=>{
         if (champions){
+            console.log(champions.length)
             res.json({
                 status: 1,
             data: champions
@@ -213,7 +214,6 @@ router.get('/imagen/:id1', (req, res, next)=>{
         where: {id: id1}
     })
     .then(champion=>{
-        console.log(champion)
         if (champion){
             res.json({
             data: champion.image
