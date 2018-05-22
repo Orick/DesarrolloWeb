@@ -29,9 +29,9 @@ router.get('/find/:server/:summonerId', (req, res, next) => {
                     }
                 }).then( league => {
                     if( league ){
-                        res.status(400).json({
-                            status: 0,
-                            statusCode: 'database/error',
+                        res.json({
+                            status: 1,
+                            statusCode: 'database/league/entocontrado',
                             data: league.toJSON()
                         });
                     }else{

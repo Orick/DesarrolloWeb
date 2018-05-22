@@ -23,7 +23,7 @@ router.post('/assig', (req, res, next) => {
                 if(relacionX) {
                     res.json({
                         status: 0,
-                        statusCode: 'associatedAccounts/asing/ok',
+                        statusCode: 'assocciatedAccounts/assig/ok',
                         description: 'Relacion ya existente'
                     });
                 }else{
