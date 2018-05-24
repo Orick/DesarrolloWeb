@@ -33,6 +33,9 @@ module.exports = (sequelize, DataTypes) => {
         attackSpeedMod: {
             type: DataTypes.DOUBLE
         },
+        criticChanceMod: {
+            type: DataTypes.DOUBLE
+        },
         plainDescription: {
             type: DataTypes.STRING,
             allowNull: false

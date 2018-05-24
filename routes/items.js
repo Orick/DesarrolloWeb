@@ -34,6 +34,7 @@ router.get('/insertitems', (req, res) => {
                 let magicattack = items[key].stats.FlatMagicDamageMod;
                 let magicre = items[key].stats.FlatSpellBlockMod;
                 let attackspeed = items[key].stats.PercentAttackSpeedMod;
+                let critic = items[key].stats.FlatCritChanceMod;
                 let descrip = items[key].description;
                 let bgold = items[key].gold.base;
                 let tgold = items[key].gold.total;
@@ -52,6 +53,7 @@ router.get('/insertitems', (req, res) => {
                         magicDamageMod: magicattack,
                         magicResistanceMod: magicre,
                         attackSpeedMod: attackspeed,
+                        criticChanceMod: critic,
                         plainDescription: descrip,
                         baseGold: bgold,
                         totalGold: tgold,
@@ -182,42 +184,35 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.get('/test/test', (req, res) => {
-    let url = 'https://la2.api.riotgames.com/lol/static-data/v3/items?locale=es_MX&itemListData=all&tags=all&api_key=' + apiKey;
-
-    axios.get(url)
-        .then(function (response) {
-            //res.json(response.data.data);
-
-            let domain = "http://ddragon.leagueoflegends.com/cdn/";
-            let version = response.data.version;
-            let section = "/img/item/"
-            let items = response.data.data;
-            let keys = Object.keys(items);
-
-            for(let i=0;i<keys.length;i++){
-                let key = keys[i];
-                let id = items[key].id;
-                let name = items[key].name;
-                let hpmod = items[key].stats.FlatHPPoolMod;
-                let mpmod = items[key].stats.FlatMPPoolMod;
-                let phyattack = items[key].stats.FlatPhysicalDamageMod;
-                let armor = items[key].stats.FlatArmorMod;
-                let magicattack = items[key].stats.FlatMagicDamageMod;
-                let magicre = items[key].stats.FlatSpellBlockMod;
-                let attackspeed = items[key].stats.PercentAttackSpeedMod;
-                let descrip = items[key].description;
-                let bgold = items[key].gold.base;
-                let tgold = items[key].gold.total;
-                let sgold = items[key].gold.sell;
-                let image = items[key].image.full;
-                let image_url = domain.concat(version,section,image);
-                console.log(image_url);
-                break
+router.get('/data/basic', (req, res, next)=>{
+    models.item
+        .findAll()
+        .then(item=>{
+            if (item){
+                let itemsArray = [];
+                for (let i in item) {
+                    let aux = [];
+                    aux.push(item[i].id);
+                    aux.push(item[i].name);
+                    aux.push(item[i].urlImage);
+                    itemsArray.push(aux);
+                }
+                res.json({
+                    status: 1,
+                    data: itemsArray
+                });
+            } else {
+                res.status(400).json({
+                    status:0,
+                    description: 'Items problem'
+                });
             }
         })
-        .catch(function (error) {
-            console.log(error);
+        .catch(error => {
+            res.status(400).json({
+                status:0,
+                description: 'Call problem'
+            });
         });
 });
 
