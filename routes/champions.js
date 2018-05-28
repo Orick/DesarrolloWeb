@@ -178,22 +178,22 @@ router.get('/all', (req, res, next)=>{
     });
 });
 
-/*router.get('/:id1/:id2', (req, res, next)=>{
-    const id1 = req.params.id1;
-    const id2 = req.params.id2;
+router.get('/data/basic', (req, res, next)=>{
+    var arreglo = [];
+    var aux = [];
     models.champions
-    .findAll({
-        where: {
-            id: {
-                [Op.or]: [id1, id2]
-            }
-        }
-    })
+    .findAll()
     .then(champions=>{
+        champions.forEach(function(element) {
+            aux = []
+            aux.push(element.id);
+            aux.push(element.name);
+            aux.push(element.image);
+            arreglo.push(aux);        
+          });
         if (champions){
             res.json({
-                status: 1,
-            data: champions
+                data: arreglo
             });
         } else {
             res.status(400).json({
@@ -206,7 +206,7 @@ router.get('/all', (req, res, next)=>{
         });
     });
 });
-*/
+
 router.get('/imagen/:id1', (req, res, next)=>{
     const id1 = req.params.id1;
     models.champions
