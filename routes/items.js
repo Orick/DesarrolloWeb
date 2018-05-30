@@ -195,6 +195,7 @@ router.get('/data/basic', (req, res, next)=>{
                     aux.push(item[i].id);
                     aux.push(item[i].name);
                     aux.push(item[i].urlImage);
+                    aux.push(item[i].plainDescription);
                     itemsArray.push(aux);
                 }
                 res.json({

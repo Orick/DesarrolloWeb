@@ -1,3 +1,3 @@
-const apykey = 'RGAPI-b9e77172-38e7-4f2b-82b7-4264c0f65b25';
+const apykey = 'RGAPI-aa474f1b-6b40-440e-81a7-f536724a627f';
 
 module.exports = apykey;
