@@ -19,15 +19,13 @@ router.get('/attack/:id1/:iditem1/:iditem2/:iditem3/:iditem4/:iditem5/:iditem6/'
     const iditem4 = req.params.iditem4;
     const iditem5 = req.params.iditem5;
     const iditem6 = req.params.iditem6;
-    var damage = 0;
-    var attackSpeedOffSet = 0;
-    var attackSpeedPerLevel = 0;
-    var attackDamagePerLevel = 0;
-    var vida = 0;
-    var armor = 0;
-    var magicArmor = 0;
-    var crit = 0;
-    var critPerLevel = 0;
+    var damage = 0; //0
+    var attackDamagePerLevel = 0; //1
+    var attackSpeedOffSet = 0; //2
+    var attackSpeedPerLevel = 0; //3
+    var crit = 0; //4
+    var critPerLevel = 0; //5
+    var attack = [0,0,0,0,0,0]
     models.item.findAll({
         where: {
             id: {
@@ -41,19 +39,19 @@ router.get('/attack/:id1/:iditem1/:iditem2/:iditem3/:iditem4/:iditem5/:iditem6/'
             })
             .then(champions=>{
                 if (champions){
-                    damage = champions[0].attackDamage + damage;
-                    attackSpeedOffSet = champions[0].attackSpeedOffSet + attackSpeedOffSet;
-                    attackSpeedPerLevel = champions[0].attackSpeedPerLevel + attackSpeedPerLevel;
-                    attackDamagePerLevel = champions[0].attackDamagePerLevel + attackDamagePerLevel;
-                    crit = champions[0].crit + crit;
-                    critPerLevel = champions[0].critPerLevel + critPerLevel;
+                    attack[0] = champions[0].attackDamage + attack[0];
+                    attack[2] = champions[0].attackSpeedOffSet + attack[2];
+                    attack[3] = champions[0].attackSpeedPerLevel + attack[3];
+                    attack[1] = champions[0].attackDamagePerLevel + attack[1];
+                    attack[4] = champions[0].crit + attack[4];
+                    attack[5] = champions[0].critPerLevel + attack[5];
                     if (item){
                     item.forEach(function(element) {
                         if (element.physicalDamageMod != null){
-                            damage = damage + element.physicalDamageMod;
+                            attack[0] = attack[0] + element.physicalDamageMod;
                         }
                         if (element.attackSpeedMod != null){
-                            attackSpeedOffSet = attackSpeedOffSet + element.attackSpeedMod;
+                            attack[2] = attack[2] + element.attackSpeedMod;
                             }
                         /*if (element.attackSpeedMod != null){
                                 attackSpeedOffSet = attackSpeedOffSet + element.attackSpeedMod;
@@ -63,12 +61,7 @@ router.get('/attack/:id1/:iditem1/:iditem2/:iditem3/:iditem4/:iditem5/:iditem6/'
                       });
                     }
                     res.json({
-                        attackDamage: damage,
-                        attackSpeed: attackSpeedOffSet,
-                        crit: crit,
-                        attackSpeedPerLevel: attackSpeedPerLevel,
-                        attackDamagePerLevel: attackDamagePerLevel,
-                        critPerLevel: critPerLevel
+                        data: attack
                     });                    
                 } else {
                     res.status(400).json({
@@ -99,10 +92,11 @@ router.get('/recibe/:id1/:iditem1/:iditem2/:iditem3/:iditem4/:iditem5/:iditem6/'
     const iditem4 = req.params.iditem4;
     const iditem5 = req.params.iditem5;
     const iditem6 = req.params.iditem6;
-    var armor = 0;
-    var armorPerLevel = 0;
-    var magicArmor = 0;
-    var spellBlockPerLevel = 0;
+    var armor = 0; //0
+    var armorPerLevel = 0; //1
+    var magicArmor = 0; //2
+    var spellBlockPerLevel = 0; //3
+    var recibe = [0,0,0,0];
     models.item.findAll({
         where: {
             id: {
@@ -116,27 +110,24 @@ router.get('/recibe/:id1/:iditem1/:iditem2/:iditem3/:iditem4/:iditem5/:iditem6/'
             })
             .then(champions=>{
                 if (champions){
-                    armor = champions[0].armor + armor;
-                    magicArmor = champions[0].spellBlock + magicArmor;
-                    armorPerLevel = champions[0].armorPerLevel + armorPerLevel;
-                    spellBlockPerLevel = champions[0].spellBlockPerLevel + spellBlockPerLevel
+                    recibe[0] = champions[0].armor + recibe[0];
+                    recibe[2] = champions[0].spellBlock + recibe[2];
+                    recibe[1] = champions[0].armorPerLevel + recibe[1];
+                    recibe[3] = champions[0].spellBlockPerLevel + recibe[3];
                     if (item){
                     item.forEach(function(element) {
                         if (element.armorMod != null){
-                            armor = armor + element.armorMod;
+                            recibe[0] = recibe[0] + element.armorMod;
                         }
                         if (element.magicResistanceMod != null){
-                            magicArmor = magicArmor + element.magicResistanceMod;
+                            recibe[2] = recibe[2] + element.magicResistanceMod;
                             }
                         
                     
                       });
                     }
                     res.json({
-                        armor: armor,
-                        magicArmor: magicArmor,
-                        magicArmorPerLevel: spellBlockPerLevel,
-                        armorPerLevel: armorPerLevel
+                        data: recibe
                     });                    
                 } else {
                     res.status(400).json({
