@@ -9,9 +9,7 @@ const firebaseAdmin = require('../config/firebaseConfig');
 app.use(bodyParser.urlencoded({ extended: false }));
 
 router.post('/', (req, res, next) => {
-    firebaseAdmin.auth().verifyIdToken(req.body.token)
-        .then(decodedToken => {
-                var iduser = decodedToken.uid;
+                var iduser = req.body['iduser'];
                 var idchamp1 = req.body['idchamp1'];
                 var idchamp2 = req.body['idchamp2'];
                 var name = req.body['name'];
@@ -27,6 +25,7 @@ router.post('/', (req, res, next) => {
                 var iditem24 = req.body['iditem24'];
                 var iditem25 = req.body['iditem25'];
                 var iditem26 = req.body['iditem26'];
+                console.log(iduser,name,idchamp1,idchamp2,iditem11,iditem12,iditem13,iditem14,iditem15,iditem16,iditem21,iditem22,iditem23,iditem24,iditem25,iditem26, )
 
                 if (idchamp1 && idchamp2) {
                     models.builds.create({
@@ -73,13 +72,84 @@ router.post('/', (req, res, next) => {
                     });
                 }
 
-        }).catch(error =>{
-        res.json({
-            code:'0',
-            description:'error al verificar token de usuario',
+});
+
+router.get('/all', (req, res, next)=>{
+    models.builds
+    .findAll()
+    .then(builds=>{
+        if (builds){
+            res.json({
+                status: 1,
+            data: builds
+            });
+        } else {
+            res.status(400).json({
+                status:0
+            });
+        }
+    }).catch(error => {
+        res.status(400).json({
+            status:0
         });
     });
 });
+
+router.get('/:token', (req, res, next)=>{
+    const token = req.params.token;
+    let nombres = [];
+    models.builds
+    .findAll({
+        where: {iduser: token}
+    })
+    .then(builds=>{
+        champions.forEach(function(element) {
+            nombres.push(element.name)      
+        });
+        if (builds){
+            res.json({
+            data: nombres
+            });
+        } else {
+            res.status(400).json({
+                status:0
+            });
+        }
+    }).catch(error => {
+        res.status(400).json({
+            status:0
+        });
+    });
+});
+
+router.get('/obtener/:token/:name', (req, res, next)=>{
+    const token = req.params.token;
+    const name = req.params.name;
+    let arreglo = [];
+    models.builds
+    .findAll({
+        where: {iduser: token}
+    })
+    .then(builds=>{
+        champions.forEach(function(element) {
+            nombres.push(element.name)      
+        });
+        if (builds){
+            res.json({
+            data: nombres
+            });
+        } else {
+            res.status(400).json({
+                status:0
+            });
+        }
+    }).catch(error => {
+        res.status(400).json({
+            status:0
+        });
+    });
+});
+
 
 router.post('/search', (req, res, next)=>{
     firebaseAdmin.auth().verifyIdToken(req.body.token)
