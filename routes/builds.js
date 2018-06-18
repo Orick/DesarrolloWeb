@@ -103,7 +103,7 @@ router.get('/:token', (req, res, next)=>{
         where: {iduser: token}
     })
     .then(builds=>{
-        champions.forEach(function(element) {
+        builds.forEach(function(element) {
             nombres.push(element.name)      
         });
         if (builds){
@@ -128,15 +128,30 @@ router.get('/obtener/:token/:name', (req, res, next)=>{
     let arreglo = [];
     models.builds
     .findAll({
-        where: {iduser: token}
+        where: {iduser: token, name: name}
     })
     .then(builds=>{
-        champions.forEach(function(element) {
-            nombres.push(element.name)      
+        builds.forEach(function(element) {
+            let aux = [];
+            aux.push(element.idchamp1);
+            aux.push(element.idchamp2);
+            aux.push(element.iditem11);
+            aux.push(element.iditem12);
+            aux.push(element.iditem13);
+            aux.push(element.iditem14);
+            aux.push(element.iditem15);
+            aux.push(element.iditem16);
+            aux.push(element.iditem21);
+            aux.push(element.iditem22);
+            aux.push(element.iditem23);
+            aux.push(element.iditem24);
+            aux.push(element.iditem25);
+            aux.push(element.iditem26);
+            arreglo.push(aux)      
         });
         if (builds){
             res.json({
-            data: nombres
+            data: arreglo
             });
         } else {
             res.status(400).json({
