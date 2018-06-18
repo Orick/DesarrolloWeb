@@ -47,11 +47,30 @@ router.get('/attack/:id1/:iditem1/:iditem2/:iditem3/:iditem4/:iditem5/:iditem6/'
                     attack[5] = champions[0].critPerLevel + attack[5];
                     if (item){
                     item.forEach(function(element) {
+                        let contador = 0;
+                        if (iditem1 == element.id){
+                            contador = contador + 1;
+                        }
+                        if (iditem2 == element.id){
+                            contador = contador + 1;
+                        }
+                        if (iditem3 == element.id){
+                            contador = contador + 1;
+                        }
+                        if (iditem4 == element.id){
+                            contador = contador + 1;
+                        }
+                        if (iditem5 == element.id){
+                            contador = contador + 1;
+                        }
+                        if (iditem6 == element.id){
+                            contador = contador + 1;
+                        }
                         if (element.physicalDamageMod != null){
-                            attack[0] = attack[0] + element.physicalDamageMod;
+                            attack[0] = attack[0] + (element.physicalDamageMod * contador);
                         }
                         if (element.attackSpeedMod != null){
-                            attack[2] = attack[2] + element.attackSpeedMod;
+                            attack[2] = attack[2] + (element.attackSpeedMod * contador);
                             }
                         /*if (element.attackSpeedMod != null){
                                 attackSpeedOffSet = attackSpeedOffSet + element.attackSpeedMod;
@@ -116,11 +135,30 @@ router.get('/recibe/:id1/:iditem1/:iditem2/:iditem3/:iditem4/:iditem5/:iditem6/'
                     recibe[3] = champions[0].spellBlockPerLevel + recibe[3];
                     if (item){
                     item.forEach(function(element) {
+                        let contador = 0;
+                        if (iditem1 == element.id){
+                            contador = contador + 1;
+                        }
+                        if (iditem2 == element.id){
+                            contador = contador + 1;
+                        }
+                        if (iditem3 == element.id){
+                            contador = contador + 1;
+                        }
+                        if (iditem4 == element.id){
+                            contador = contador + 1;
+                        }
+                        if (iditem5 == element.id){
+                            contador = contador + 1;
+                        }
+                        if (iditem6 == element.id){
+                            contador = contador + 1;
+                        }
                         if (element.armorMod != null){
-                            recibe[0] = recibe[0] + element.armorMod;
+                            recibe[0] = recibe[0] + (element.armorMod * contador);
                         }
                         if (element.magicResistanceMod != null){
-                            recibe[2] = recibe[2] + element.magicResistanceMod;
+                            recibe[2] = recibe[2] + (element.magicResistanceMod * contador);
                             }
                         
                     

@@ -14,6 +14,7 @@ router.post('/', (req, res, next) => {
                 var iduser = decodedToken.uid;
                 var idchamp1 = req.body['idchamp1'];
                 var idchamp2 = req.body['idchamp2'];
+                var name = req.body['name'];
                 var iditem11 = req.body['iditem11'];
                 var iditem12 = req.body['iditem12'];
                 var iditem13 = req.body['iditem13'];
@@ -30,6 +31,7 @@ router.post('/', (req, res, next) => {
                 if (idchamp1 && idchamp2) {
                     models.builds.create({
                         iduser: iduser,
+                        name: name,
                         idchamp1: idchamp1,
                         idchamp2: idchamp2,
                         iditem11: iditem11,
