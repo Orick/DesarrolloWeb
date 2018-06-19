@@ -125,14 +125,12 @@ router.get('/:token', (req, res, next)=>{
 router.get('/obtener/:token/:name', (req, res, next)=>{
     const token = req.params.token;
     const name = req.params.name;
-    let arreglo = [];
+    let aux = [];
     models.builds
     .findAll({
         where: {iduser: token, name: name}
     })
     .then(builds=>{
-        builds.forEach(function(element) {
-            let aux = [];
             aux.push(element.idchamp1);
             aux.push(element.idchamp2);
             aux.push(element.iditem11);
@@ -147,11 +145,9 @@ router.get('/obtener/:token/:name', (req, res, next)=>{
             aux.push(element.iditem24);
             aux.push(element.iditem25);
             aux.push(element.iditem26);
-            arreglo.push(aux)      
-        });
         if (builds){
             res.json({
-            data: arreglo
+            data: aux
             });
         } else {
             res.status(400).json({
