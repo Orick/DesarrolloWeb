@@ -97,14 +97,14 @@ router.get('/insertStatistics', (req, res) => { // ID, role y Winrates de todos 
                         skillWins: skillWins,
                         skillWinRate: skillWinRate,
                         skillHash: skillHash,
-						*/
+						
 						
                         summonerCount: summonerCount,
                         summonerWins: summonerWins,
                         summonerWinRate: summonerWinRate,
                         summonerHash: summonerHash
 						
-						/*
+						
                         runeCount: runeCount,
                         runeWins: runeWins,
                         runeWinRate: runeWinRate,
