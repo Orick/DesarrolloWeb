@@ -59,18 +59,6 @@ module.exports = (sequelize, DataTypes) => {
         },
         finalItemHash: {
             type: DataTypes.STRING
-        },
-        summonerCount: {
-            type: DataTypes.INTEGER
-        },
-        summonerWins: {
-            type: DataTypes.INTEGER
-        },
-        summonerWinRate: {
-            type: DataTypes.STRING
-        },
-        summonerHash: {
-            type: DataTypes.STRING
         }
     });
 
