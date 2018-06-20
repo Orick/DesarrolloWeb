@@ -25,6 +25,8 @@ router.post('/', (req, res, next) => {
                 var iditem24 = req.body['iditem24'];
                 var iditem25 = req.body['iditem25'];
                 var iditem26 = req.body['iditem26'];
+                var image1 = req.body['image1'];
+                var image2 = req.body['image2'];
                 console.log(iduser,name,idchamp1,idchamp2,iditem11,iditem12,iditem13,iditem14,iditem15,iditem16,iditem21,iditem22,iditem23,iditem24,iditem25,iditem26, )
 
                 if (idchamp1 && idchamp2) {
@@ -44,7 +46,9 @@ router.post('/', (req, res, next) => {
                         iditem23: iditem23,
                         iditem24: iditem24,
                         iditem25: iditem25,
-                        iditem26: iditem26
+                        iditem26: iditem26,
+                        image1: image1,
+                        image2: image2
 
 
                     }).then(builds => {
@@ -122,15 +126,18 @@ router.get('/:token', (req, res, next)=>{
     });
 });
 
+
 router.get('/obtener/:token/:name', (req, res, next)=>{
-    const token = req.params.token;
+    const iduser = req.params.token;
     const name = req.params.name;
     let aux = [];
+    console.log(aux,iduser,name)
     models.builds
     .findAll({
-        where: {iduser: token, name: name}
+        where: {iduser: iduser, name: name}
     })
     .then(builds=>{
+        builds.forEach(function(element) {
             aux.push(element.idchamp1);
             aux.push(element.idchamp2);
             aux.push(element.iditem11);
@@ -145,18 +152,23 @@ router.get('/obtener/:token/:name', (req, res, next)=>{
             aux.push(element.iditem24);
             aux.push(element.iditem25);
             aux.push(element.iditem26);
+            aux.push(element.image1);
+            aux.push(element.image2);
+        });
         if (builds){
             res.json({
             data: aux
             });
         } else {
             res.status(400).json({
-                status:0
+                status:0,
+                error: 'builds vacio'
             });
         }
     }).catch(error => {
         res.status(400).json({
-            status:0
+            status:0,
+            error: 'catch'
         });
     });
 });

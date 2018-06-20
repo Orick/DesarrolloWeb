@@ -66,6 +66,14 @@ module.exports = (sequelize, DataTypes) => {
         iditem26: {
             type: DataTypes.INTEGER,
             allowNull: true,
+        },
+        image1: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        image2: {
+            type: DataTypes.STRING,
+            allowNull: false,
         }
 });
 };
