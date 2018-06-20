@@ -54,13 +54,13 @@ router.get('/insertStatistics', (req, res) => { // ID, role y Winrates de todos 
                 let skillWinRate = statistics[key].hashes.skillorderhash.highestCount.winrate; // razon de victorias
                 let skillHash = statistics[key].hashes.skillorderhash.highestCount.hash; // IDs de los objetos
                 // Habilidades de Summoner - Mas Popular
-				*/
+				
                 let summonerCount = statistics[key].hashes.summonershash.highestCount.count; // cantidad de veces repetido
                 let summonerWins = statistics[key].hashes.summonershash.highestCount.wins; // numero de victorias
                 let summonerWinRate = Number(100*statistics[key].hashes.summonershash.highestCount.winrate).toFixed(2)+"%"; // razon de victorias
                 let summonerHash = statistics[key].hashes.summonershash.highestCount.hash; // IDs de los objetos
                 // Runas Ocupadas - Mas Popular
-				/*
+				
                 let runeCount = statistics[key].hashes.runehash.highestCount.count; // cantidad de veces repetido
                 let runeWins = statistics[key].hashes.runehash.highestCount.wins; // numero de victorias
                 let runeWinRate = statistics[key].hashes.runehash.highestCount.winrate; // razon de victorias
